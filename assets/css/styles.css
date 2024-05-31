@@ -1,0 +1,24 @@
+/* Estilos personalizados aquí */
+
+/* Ajustes para el contenido */
+section {
+    margin-bottom: 40px;
+}
+
+/* Estilos para el formulario de inicio de sesión */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estilos para el footer */
+footer {
+    position: absolute; /* Fija el footer */
+    bottom: 0; /* Lo sitúa al borde inferior */
+    width: 100%; /* Ocupa todo el ancho */
+    background-color: #343a40; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    padding: 10px 0; /* Espaciado interno */
+    text-align: center; /* Alineación del texto al centro */
+  }
+  
