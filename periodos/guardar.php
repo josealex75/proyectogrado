@@ -12,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Recuperar los campos opcionales si están presentes
         $nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : '';
         $ano = isset($_POST["ano"]) ? $_POST["ano"] : '';
-     
+        $estado=1
         // Insertar los datos en la base de datos
         
-        $sql = "INSERT INTO 'periodos'('id_periodo','n_periodo', 'ano','estado') VALUES ('','$nombre','$ano','1')";
+        $sql = "INSERT INTO 'periodos'('id_periodo','n_periodo', 'ano','estado') VALUES ('$nombre','$ano'";
        
         if ($conn->query($sql) === TRUE) {
             // Redirigir al usuario al index con un mensaje de éxito
