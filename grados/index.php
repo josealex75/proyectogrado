@@ -187,7 +187,7 @@ function editarGrado(id) {
             var data = JSON.parse(response);
             ('#editarGradoModal #id').val(data.id_grado);
             $('#editarGradoModal #nombre').val(data.n_grado);
-            $('#editarGradoModal #ano').val(data.año);
+            $('#editarGradoModal #ano').val(data.ano);
             // Mostrar la ventana modal
             $('#editarGradoModal').modal('show');
         },
