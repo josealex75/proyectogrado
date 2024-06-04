@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Insertar los datos en la base de datos
         
-        $sql = "INSERT INTO grados (n_grado, año) 
+        $sql = "INSERT INTO grados (n_grado, ano) 
                     VALUES ('$nombre', '$ano')";
        
         if ($conn->query($sql) === TRUE) {

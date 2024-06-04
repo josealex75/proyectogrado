@@ -89,7 +89,7 @@
                while($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row["n_grado"] . "</td>";
-                echo "<td>" . $row["año"] . "</td>";
+                echo "<td>" . $row["ano"] . "</td>";
 
                 echo "<td>";
                 echo "<button class='btn btn-success btn-sm' onclick='editarGrado (" . $row["id_grado"] . ")'><i class='bi bi-pencil-fill'></i> Editar</button>";
