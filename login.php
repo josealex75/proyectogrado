@@ -1,22 +1,23 @@
 <?php 
 session_start();
-require conexion.php;
-if(!empty($_POST['correo']) && !empty($_POST['contraseña'])){
-    $records=$conn->prepare('SELECT id_usuario, correo, contrasena FROM usuarios WHERE correo=:correo')
-    $records-> bindParam(':correo', $_POST['correo']);
-    $records-> excecute();
-    $result = $records->fetch(PDO::fetch_assoc);
-    $messege = '';
+require 'conexion.php';
 
-    if(count($result) > 0 && password_verify($_POST['contrasena', $result['contrasena']])){
-        $_SESSION['id_usuario'&& 'id_roll'] = $result['id'];
-        header(locationn: /profesores)
-    }
-    else{
-        $messege = 'Lo siento algo salio mal intentalo de nuevo'; 
+if(!empty($_POST['correo']) && !empty($_POST['contrasena'])){
+    $records = $conn->prepare('SELECT id_usuario, correo, contrasena FROM usuarios WHERE correo = :correo');
+    $records->bindParam(':correo', $_POST['correo']);
+    $records->execute();
+    $result = $records->fetch(PDO::FETCH_ASSOC);
+    $message = '';
+
+    if(count($result) > 0 && password_verify($_POST['contrasena'], $result['contrasena'])){
+        $_SESSION['id_usuario'] = $result['id_usuario'];
+        header("Location: /profesores");
+        exit();
+    } else {
+        $message = 'Lo siento, algo salió mal. Intenta de nuevo.'; 
     }
 }
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +32,7 @@ if(!empty($_POST['correo']) && !empty($_POST['contraseña'])){
 <body>
     <seccion>
         <h2>Login</h2>
-        <?php 
-            if(!empty($messege)) :?>
-          <p> <?= message ?> </p>
-        <php endif;
-        ?> 
-        <form action="index.php">
+       <form action="index.php">
             <label for="">correo</label>
             <input type="email" placeholder="correo" id="correo" autofocus>
             <label for="">contraseña</label>
