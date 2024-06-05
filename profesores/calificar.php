@@ -10,39 +10,10 @@
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="../index.php">Gestión de Notas</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.php">Profesores</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../materias">Materias</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../estudiantes">Estudiantes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../grados">Grados</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../notas">Notas</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
 <!-- Main Content -->
 <div class="container mt-4">
-  <!-- Sección de Gestión de estudiante -->
-  <section id="estudiantes">
+  <!-- Sección de Gestión de Grados -->
+  <section id="Grados">
     <h2>Gestión de Grados</h2>
     <!-- Add a dropdown to select a student -->
     <div class="row mb-3">
@@ -52,11 +23,11 @@
           <!-- Populate this dropdown with the list of students -->
           <?php
             require '../conexion.php';
-            $sql = "SELECT * FROM estudiantes";
+            $sql = "SELECT * FROM usuarios WHERE id_rol=2";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
               while($row = $result->fetch_assoc()) {
-                echo "<option value='" . $row["id_estudiante"] . "'>" . $row["nombre"] . "</option>";
+                echo "<option value='" . $row["id_estudiante"] . "'>" . $row["n_estudiante"] . "</option>";
               }
             }
           ?>
@@ -68,8 +39,8 @@
     <div id="studentInfo" class="row mb-3">
       <div class="col-12">
         <h4>Información del Estudiante:</h4>
-        <p><strong>ID:</strong> <span id="studentId"></span></p>
-        <p><strong>Nombre:</strong> <span id="studentName"></span></p>
+        <p><strong>ID:</strong> <span id="id_estudiante"></span></p>
+        <p><strong>Nombre:</strong> <span id="n_estudiante"></span></p>
         <!-- Add more fields as needed -->
       </div>
     </div>
@@ -81,10 +52,10 @@
 <script>
 // JavaScript to handle the selection event and retrieve student information
 document.getElementById("studentSelect").addEventListener("change", function() {
-  var studentId = this.value;
+  var id_estudiante = this.value;
   // AJAX request to retrieve student information based on the selected ID
   $.ajax({
-    url: 'obtener_estudiante.php', // Change the URL to your PHP script that retrieves student information
+    url: '../estudiantes/obtener_estudiante.php', // Change the URL to your PHP script that retrieves student information
     type: 'GET',
     data: { id: studentId },
     success: function(response) {
@@ -100,42 +71,5 @@ document.getElementById("studentSelect").addEventListener("change", function() {
   });
 });
 </script>
-
-
-
-
-<!-- Footer -->
-<footer class="bg-dark text-white text-center py-3">
-  &copy; 2024 Gestión de Notas
-</footer>
-
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<!-- Bootstrap JS (dependencias Popper.js y Bootstrap) -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-<script>
-function habilitarProfesor(id) {
-    // Realizar una solicitud AJAX para obtener los datos del profesor con el ID proporcionado
-    $.ajax({
-        url: 'habilitar.php', // Ruta al script PHP que obtiene los datos del profesor
-        type: 'GET',
-        data: { id: id },
-        success: function(response) {
-          alert('Profesor habilitado!');
-          location.reload();
-        },
-        error: function(xhr, status, error) {
-            // Manejar errores si la solicitud AJAX falla
-            console.error(error);
-        }
-    });
-}
-
-</script>
-
-
 </body>
 </html>
