@@ -19,7 +19,7 @@
         <p id="error-message" class="error-message"></p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 
     <!-- Footer -->
 <footer class="bg-dark text-white text-center py-3">
