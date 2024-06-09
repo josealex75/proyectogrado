@@ -26,7 +26,7 @@ if (!isset($_POST['username'], $_POST['password'])) {
 
     // si no hay datos muestra error y re direccionar
 
-    header('Location: index.html');
+    header('Location: index.pxp');
 }
 
 // evitar inyección sql
@@ -62,7 +62,7 @@ if ($stmt->num_rows > 0) {
         $_SESSION['id_usuario'] = $id_usuario;
         $_SESSION['correo'] = $correo_usuario;
 
-        header('Location: inicio.php');
+        header('Location: index.php');
     }
 } else {
 

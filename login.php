@@ -9,10 +9,17 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body> 
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link" href="index.html">Inicio</a>
+      </li>
+      </ul>
+  </div>
     <div class="login-container">
         <h2>Login</h2>
-        <form id="autenticacion.php" method="post">
+        <form action="autenticacion.php" method="post">
             <input type="email" id="correo" placeholder="Correo electrónico" required>
             <input type="password" id="contrasena" placeholder="Contraseña" required>
             <button type="submit">Iniciar sesión</button>

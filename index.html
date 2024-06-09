@@ -1,18 +1,3 @@
-<?php
-
-
-// confirmar sesion
-
-session_start();
-
-
-if (!isset($_SESSION['loggedin'])) {
-
-    header('Location: index.html');
-    exit;
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,12 +9,8 @@ if (!isset($_SESSION['loggedin'])) {
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body class="loggedin">
-  <nav class="navtop">
-  <div class="content">
-        <h2>Página de Inicio</h2>
-        <p>Hola de nuevo, <?= $_SESSION['name'] ?> !!!</p>
-    </div>
+<body>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -40,25 +21,7 @@ if (!isset($_SESSION['loggedin'])) {
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="profesores">Profesores</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="materias">Materias</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="estudiantes">Estudiantes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="grados">Grados</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#notas">Notas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="periodos">periodos</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="login.php">Iniciar Sesión</a>
+           <a class="nav-link" href="login.php">Iniciar Sesión</a>
       </li>
       </ul>
     </div>
