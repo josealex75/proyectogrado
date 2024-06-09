@@ -58,7 +58,7 @@ if (!isset($_SESSION['loggedin'])) {
           <a class="nav-link" href="periodos">periodos</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="login.php">Iniciar Sesión</a>
+        <a class="nav-link" href="cerrar-sesion.php">Cerrar Seccion</a>
       </li>
       </ul>
     </div>
