@@ -68,8 +68,33 @@
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          <!-- Aquí mostrarías la lista de calificaciones de estudiantes -->
+        <?php
+             require '../conexion.php';
+
+             $sql = "SELECT u.usuario AS usuario, p.n_periodo AS periodo, m.n_materia AS materia, n.nota AS nota FROM usuarios u JOIN roles r ON u.id_rol = r.id_rol JOIN notas n ON u.id_usuario = n.id_usuario JOIN periodos p ON n.id_periodo = p.id_periodo JOIN materias m ON n.id_materia = m.id_materia JOIN grados g ON m.id_grado = g.id_grado WHERE r.id_rol = 2;";
+             $result = $conn->query($sql);
+            
+            // // Verificar si se encontraron resultados
+             if ($result->num_rows > 0) {
+            //   // Iterar sobre los resultados y mostrar los datos en la tabla
+               while($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["id_usuario"] . "</td>";
+                echo "<td>" . $row["n_materia"] . "</td>";
+                echo "<td>" . $row["n_nota"] . "</td>";
+                echo "<td>";
+                echo "<button class='btn btn-success btn-sm' onclick='editarProfesor (" . $row["id_usuario"] . ")'><i class='bi bi-pencil-fill'></i> Editar</button>";
+                if($row['estado'] == 1 )
+                echo "<button class='btn btn-danger btn-sm ms-2' onclick=\"location.href='deshabilitar.php?id=" . $row['id_usuario'] . "'\"><i class='bi bi-x-circle-fill'></i> Deshabilitar</button>";
+                                 
+                echo "</td>";
+                echo "</tr>";
+               }
+             } else {
+               echo "No se encontraron resultados";
+             }
+
+          ?>
         </tbody>
       </table>
     </div>

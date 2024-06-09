@@ -25,11 +25,7 @@ if (!isset($_SESSION['loggedin'])) {
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="loggedin">
-  <nav class="navtop">
-  <div class="content">
-        <h2>Página de Inicio</h2>
-        <p>Hola de nuevo, <?= $_SESSION['name'] ?> !!!</p>
-    </div>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -59,6 +55,9 @@ if (!isset($_SESSION['loggedin'])) {
         </li>
         <li class="nav-item">
         <a class="nav-link" href="cerrar-sesion.php">Cerrar Seccion</a>
+      </li>
+      <li class="nav-item">
+      <p aling="left">Hola de nuevo, <?= $_SESSION['name'] ?> !!!</p>
       </li>
       </ul>
     </div>
