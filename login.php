@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form id="login-form">
+        <form id="autenticacion.php" method="post">
             <input type="email" id="correo" placeholder="Correo electrónico" required>
             <input type="password" id="contrasena" placeholder="Contraseña" required>
             <button type="submit">Iniciar sesión</button>
@@ -27,8 +28,21 @@
 </footer>
 
 <!-- Bootstrap JS (dependencias Popper.js y jQuery) -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-<script src="assets/js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery/jquery-2.2.4.min.js"></script>
+  <script src="assets/js/jquery-ui/jquery-ui.min.js"></script>
+  <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+  <script src="assets/js/pace/pace.min.js"></script>
+  <script src="assets/js/lobipanel/lobipanel.min.js"></script>
+  <script src="assets/js/iscroll/iscroll.js"></script>
+  <!-- ========== PAGE JS FILES ========== -->
+  <!-- ========== THEME JS ========== -->
+  <script src="assets/js/main.js"></script>
+  <script>
+      $(function() {
+
+      });
+   </script>
 </body>
 </html>

@@ -10,11 +10,14 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         headers: {
             'Content-Type': 'application/json'
         },
+        
         body: JSON.stringify({
             correo: correo,
             contrasena: contrasena
         })
     })
+
+    
     .then(response => {
         if (!response.ok) {
             throw new Error('Error en la solicitud.');
@@ -25,7 +28,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         // Manejar la respuesta del servidor
         if (data.success) {
             // Redireccionar al usuario a su página de inicio o dashboard
-            window.location.href = '/dashboard';
+            window.location.href = 'index.php';
         } else {
             document.getElementById('error-message').textContent = data.message;
         }
