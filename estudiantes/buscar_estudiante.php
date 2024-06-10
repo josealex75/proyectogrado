@@ -1,4 +1,6 @@
 <?php
+session_start();
+error_reporting(0);
 require '../conexion.php';
 ?>
 <!DOCTYPE html>
@@ -27,20 +29,22 @@ require '../conexion.php';
                                     <select name="class" class="form-control" id="default" required="required">
                                     <option value="">Selecciona tu Grado</option>
                                     <?php 
-                                    $sql = "SELECT n_grado FROM grados WHERE estado = 1";
+                                    $sql = "SELECT * FROM grados WHERE estado = 1";
                                     $query = $dbh->prepare($sql);
                                     $query->execute();
                                     $results = $query->fetchAll(PDO::FETCH_OBJ);
                                     if ($query->rowCount() > 0) {
                                         foreach ($results as $result) { ?>
                                             <option value="<?php echo htmlentities($result->id_grado); ?>"> <?php echo htmlentities($result->n_grado); ?>&nbsp; Section-<?php echo htmlentities($result->Section); ?></option>
-                                            
+
                                     <?php 
                                         }
                                     } 
                                     ?>
                                     </select>
-                                    <div class="form-group mt-20">
+                                </div>
+
+                                <div class="form-group mt-20">
                                     <div class="">
 
                                         <button type="submit" class="btn" style="color: #172541;">Buscar</button>
@@ -51,7 +55,7 @@ require '../conexion.php';
                                 <div class="col-sm-6">
                                     <a href="index.php" class="text-white">Volver</a>
                                 </div>
-                                </div>
+</form>
 
 <!-- Footer -->
 <footer class="bg-dark text-white text-center py-3">

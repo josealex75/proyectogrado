@@ -11,13 +11,13 @@ include('..includes/conexion.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resultados Estudiante</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
-    <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen">
-    <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen">
-    <link rel="stylesheet" href="css/prism/prism.css" media="screen">
-    <link rel="stylesheet" href="css/main.css" media="screen">
-    <script src="js/modernizr/modernizr.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css" media="screen">
+    <link rel="stylesheet" href="../assets/css/animate-css/animate.min.css" media="screen">
+    <link rel="stylesheet" href="../assets/css/lobipanel/lobipanel.min.css" media="screen">
+    <link rel="stylesheet" href="../assets/css/prism/prism.css" media="screen">
+    <link rel="stylesheet" href="../assets/css/main.css" media="screen">
+    <script src="../assets/js/modernizr/modernizr.min.js"></script>
     <link rel="stylesheet" href="./assets/css/resultados/style.css">
 </head>
 
@@ -58,7 +58,7 @@ include('..includes/conexion.php');
                                                 $classid = $_POST['class'];
                                                 $_SESSION['rollid'] = $rollid;
                                                 $_SESSION['classid'] = $classid;
-                                                $qery = "SELECT u.usuario AS usuario, p.n_periodo AS periodo, m.n_materia AS materia, n.nota AS nota FROM usuarios u JOIN roles r ON u.id_rol = r.id_rol JOIN notas n ON u.id_usuario = n.id_usuario JOIN periodos p ON n.id_periodo = p.id_periodo JOIN materias m ON n.id_materia = m.id_materia JOIN grados g ON m.id_grado = g.id_grado WHERE r.id_rol = 2;";
+                                                $qery = "SELECT u.usuario AS usuario, p.n_periodo AS periodo, m.n_materia AS materia, n.nota AS nota FROM usuarios u JOIN roles r ON u.id_rol = r.id_rol JOIN notas n ON u.id_usuario = n.id_usuario JOIN periodos p ON n.id_periodo = p.id_periodo JOIN materias m ON n.id_materia = m.id_materia JOIN grados g ON m.id_grado = g.id_grado WHERE id_usuario= $rollid;";
                                                 $stmt = $dbh->prepare($qery);
                                                 $stmt->bindParam(':rollid', $rollid, PDO::PARAM_STR);
                                                 $stmt->bindParam(':classid', $classid, PDO::PARAM_STR);
@@ -67,9 +67,9 @@ include('..includes/conexion.php');
                                                 $cnt = 1;
                                                 if ($stmt->rowCount() > 0) {
                                                     foreach ($resultss as $row) {   ?>
-                                                        <p><b>Nombre de Estudiante:</b> <?php echo htmlentities($row->n_usuario) ($row->a_usuario); ?></p>
-                                                        <p><b>ID Roll:</b> <?php echo htmlentities($row->id_usuario); ?>
-                                                        <p><b>Año Lectivo:</b> <?php echo htmlentities($row->n_grado); ?>(<?php echo htmlentities($row->n_materia); ?>)
+                                                        <p><b>Nombre de Estudiante:</b> <?php echo htmlentities($row->StudentName); ?></p>
+                                                        <p><b>ID Roll:</b> <?php echo htmlentities($row->RollId); ?>
+                                                        <p><b>Año Lectivo:</b> <?php echo htmlentities($row->ClassName); ?>(<?php echo htmlentities($row->Section); ?>)
                                                         <?php }
 
                                                         ?>
