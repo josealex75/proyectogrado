@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-include('..includes/conexion.php');
+include('../conexion.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@ include('..includes/conexion.php');
     <link rel="stylesheet" href="../assets/css/prism/prism.css" media="screen">
     <link rel="stylesheet" href="../assets/css/main.css" media="screen">
     <script src="../assets/js/modernizr/modernizr.min.js"></script>
-    <link rel="stylesheet" href="./assets/css/resultados/style.css">
+    <link rel="stylesheet" href="../assets/css/resultados/style.css">
 </head>
 
 <body>
@@ -34,8 +34,6 @@ include('..includes/conexion.php');
                         <!-- /.row -->
                         <h1><span class="blue">&lt;</span>Resultados<span class="blue">&gt;</span> <span class="yellow">Estudiante</pan>
                         </h1>
-                        <h2><a href="https://www.configuroweb.com/46-aplicaciones-gratuitas-en-php-python-y-javascript/#Aplicaciones-gratuitas-en-PHP,-Python-y-Javascript" target="_blank">Para más desarrollos ConfiguroWeb</a></h2>
-
                         <!-- /.row -->
                     </div>
                     <!-- /.container-fluid -->
@@ -53,23 +51,32 @@ include('..includes/conexion.php');
                                             <div class="panel-title">
                                                 <hr />
                                                 <?php
-                                                // code Student Data
+                                                // Obtener datos del formulario
                                                 $rollid = $_POST['rollid'];
-                                                $classid = $_POST['class'];
+                                                $classid = $_POST['classid'];
                                                 $_SESSION['rollid'] = $rollid;
                                                 $_SESSION['classid'] = $classid;
-                                                $qery = "SELECT u.usuario AS usuario, p.n_periodo AS periodo, m.n_materia AS materia, n.nota AS nota FROM usuarios u JOIN roles r ON u.id_rol = r.id_rol JOIN notas n ON u.id_usuario = n.id_usuario JOIN periodos p ON n.id_periodo = p.id_periodo JOIN materias m ON n.id_materia = m.id_materia JOIN grados g ON m.id_grado = g.id_grado WHERE id_usuario= $rollid;";
-                                                $stmt = $dbh->prepare($qery);
-                                                $stmt->bindParam(':rollid', $rollid, PDO::PARAM_STR);
-                                                $stmt->bindParam(':classid', $classid, PDO::PARAM_STR);
+
+                                                 // Consulta para obtener resultados
+                                                $query = "SELECT u.usuario AS usuario, p.n_periodo AS periodo, m.n_materia AS materia, n.nota AS nota 
+                                                          FROM usuarios u 
+                                                          JOIN roles r ON u.id_rol = r.id_rol 
+                                                          JOIN notas n ON u.id_usuario = n.id_usuario 
+                                                          JOIN periodos p ON n.id_periodo = p.id_periodo 
+                                                          JOIN materias m ON n.id_materia = m.id_materia 
+                                                          JOIN grados g ON m.id_grado = g.id_grado 
+                                                          WHERE u.id_usuario = :rollid AND g.id_grado = :classid";
+                                                $stmt = $dbh->prepare($query);
+                                                $stmt->bindParam(':rollid', $rollid, PDO::PARAM_INT);
+                                                $stmt->bindParam(':classid', $classid, PDO::PARAM_INT);
                                                 $stmt->execute();
-                                                $resultss = $stmt->fetchAll(PDO::FETCH_OBJ);
+                                                $results = $stmt->fetchAll(PDO::FETCH_OBJ);
                                                 $cnt = 1;
                                                 if ($stmt->rowCount() > 0) {
                                                     foreach ($resultss as $row) {   ?>
-                                                        <p><b>Nombre de Estudiante:</b> <?php echo htmlentities($row->StudentName); ?></p>
+                                                        <p><b>Nombre de Estudiante:</b> <?php echo htmlentities($row->usuario); ?></p>
                                                         <p><b>ID Roll:</b> <?php echo htmlentities($row->RollId); ?>
-                                                        <p><b>Año Lectivo:</b> <?php echo htmlentities($row->ClassName); ?>(<?php echo htmlentities($row->Section); ?>)
+                                                        <p><b>Salon:</b> <?php echo htmlentities($row->grado); ?>(<?php echo htmlentities($row->Section); ?>)
                                                         <?php }
 
                                                         ?>
@@ -98,7 +105,7 @@ include('..includes/conexion.php');
                                                         <?php
                                                         // Code for result
 
-                                                        $query = "select t.StudentName,t.RollId,t.ClassId,t.marks,SubjectId,tblsubjects.SubjectName from (select sts.StudentName,sts.RollId,sts.ClassId,tr.marks,SubjectId from tblstudents as sts join  tblresult as tr on tr.StudentId=sts.StudentId) as t join tblsubjects on tblsubjects.id=t.SubjectId where (t.RollId=:rollid and t.ClassId=:classid)";
+                                                        $query = "SELECT u.usuario AS usuario, p.n_periodo AS periodo, m.n_materia AS materia, n.nota AS nota FROM usuarios u JOIN roles r ON u.id_rol = r.id_rol JOIN notas n ON u.id_usuario = n.id_usuario JOIN periodos p ON n.id_periodo = p.id_periodo JOIN materias m ON n.id_materia = m.id_materia JOIN grados g ON m.id_grado = g.id_grado WHERE u.id_usuario = :rollid and g.id_grado=:classid";
                                                         $query = $dbh->prepare($query);
                                                         $query->bindParam(':rollid', $rollid, PDO::PARAM_STR);
                                                         $query->bindParam(':classid', $classid, PDO::PARAM_STR);
@@ -112,7 +119,7 @@ include('..includes/conexion.php');
 
                                                                 <tr>
                                                                     <th scope="row" style="text-align: center"><?php echo htmlentities($cnt); ?></th>
-                                                                    <td style="text-align: center"><?php echo htmlentities($result->SubjectName); ?></td>
+                                                                    <td style="text-align: center"><?php echo htmlentities($result->ususario); ?></td>
                                                                     <td style="text-align: center"><?php echo htmlentities($totalmarks = $result->marks); ?></td>
                                                                 </tr>
                                                             <?php

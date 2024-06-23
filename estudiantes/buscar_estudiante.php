@@ -25,8 +25,8 @@ require '../conexion.php';
                                     <input type="text" class="form-control" id="rollid" placeholder="Numero documento" autocomplete="off" name="rollid">
                                 </div>
                                 <div class="form-group">
-                                    <label for="default" class="control-label">Grado</label>
-                                    <select name="class" class="form-control" id="default" required="required">
+                                    <label for="classid" class="control-label">Grado</label>
+                                    <select name="classid" class="form-control" id="classid" required="required">
                                     <option value="">Selecciona tu Grado</option>
                                     <?php 
                                     $sql = "SELECT * FROM grados WHERE estado = 1";

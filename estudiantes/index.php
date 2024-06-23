@@ -102,7 +102,7 @@ if (!isset($_SESSION['loggedin'])) {
           <?php
              require '../conexion.php';
 
-             $sql = "SELECT * FROM usuarios WHERE id_rol = 2 && estado = 1";
+             $sql = "SELECT * FROM usuarios WHERE id_rol = 1 && estado = 1";
              $result = $conn->query($sql);
             
             // // Verificar si se encontraron resultados
