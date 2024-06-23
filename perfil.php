@@ -26,12 +26,12 @@ if (mysqli_connect_error()) {
     exit('Fallo en la conexión de MySQL:' . mysqli_connect_error());
 }
 
-$stmt = $conexion->prepare('SELECT id_usuario, usuario,contrasena,correo_usuario FROM usuarios WHERE correo_usuario =?');
+$stmt = $conexion->prepare('SELECT id_usuario, usuario,contrasena,correo_usuario,id_rol FROM usuarios WHERE correo_usuario =?');
 
 
 $stmt->bind_param('i', $_SESSION['id_usuario']);
 $stmt->execute();
-$stmt->bind_result($id_usuario,$usuario,$contrasena,$correo_usuario);
+$stmt->bind_result($id_usuario,$usuario,$contrasena,$correo_usuario,$id_rol);
 $stmt->fetch();
 $stmt->close();
 

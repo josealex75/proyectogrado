@@ -48,7 +48,7 @@ if ($stmt->num_rows > 0) {
 
     // se confirma que la cuenta existe ahora validamos la contraseña
 
-    if ($_POST['password'] === $contrasena && $_POST['username'] === $correo_usuario ) {
+    if ($_POST['password'] === $contrasena && $_POST['username'] === $correo_usuario){
 
         // la conexion sería exitosa, se crea la sesión
 
@@ -57,13 +57,20 @@ if ($stmt->num_rows > 0) {
         $_SESSION['name'] = $usuario;
         $_SESSION['id_usuario'] = $id_usuario;
         $_SESSION['correo'] = $correo_usuario;
-        $_SESSION['roll'] = $id_rol;
+        $_SESSION['rol'] = $id_rol;
         $_SESSION['estado'] = $estado;
-
-        header('Location: index.php');
+        if($id_rol === 2){
+            header('Location: index.php');
+        }
+        elseif($id_rol === 0){
+            header('Location: profesores/index.php');
+        }
+        elseif($id_rol === 1){
+            header('Location: estudiante/index.php');
+        }
     }
-    else {
-
+        
+    else{
     // usuario incorrecto
     header('Location: index.html');
     }
