@@ -65,9 +65,9 @@ if ($stmt->num_rows > 0) {
         elseif($id_rol === 0){
             header('Location: profesores/index.php');
         }
-        elseif($id_rol === 1){
-            header('Location: estudiante/index.php');
-        }
+     //   elseif($id_rol === 1){
+     //     header('Location: estudiantes/buscar_estudiante.php');
+      //  }
     }
         
     else{

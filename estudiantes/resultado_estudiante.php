@@ -71,8 +71,9 @@ include('../conexion.php');
                                                 $cnt = 1;
                                                 if ($stmt->rowCount() > 0) {
                                                     foreach ($results as $row) {   ?>
+                                                      
                                                         <p><b>Nombre de Estudiante:</b> <?php echo htmlentities($row->usuario); ?></p>
-                                                        <p><b>Año Lectivo:</b> <?php echo htmlentities($row->periodo); ?>(<?php echo htmlentities($row->Section); ?>)
+                                                        <p><b>Año Lectivo:</b> <?php echo htmlentities($row->periodo); ?>(<?php echo htmlentities($row->Section); ?>)</p>
                                                         <?php }
                                                     ?>
                                             </div>
@@ -115,8 +116,7 @@ include('../conexion.php');
                                                                 <tr>
                                                                     <th scope="row" style="text-align: center"><?php echo htmlentities($cnt); ?></th>
                                                                     <td style="text-align: center"><?php echo htmlentities($result->materia); ?></td>
-                                                                    <td style="text-align: center"><?php echo htmlentities($result->nota); ?></td>
-                                                                    <td style="text-align: center"><?php echo htmlentities($totalmarks = $result->marks); ?></td>
+                                                                    <td style="text-align: center"><?php echo htmlentities($totalmarks = $result->nota); ?></td>
                                                                 </tr>
                                                             <?php
                                                                 $totlcount += $totalmarks;
@@ -125,10 +125,10 @@ include('../conexion.php');
                                                             ?>
                                                             <tr>
                                                                 <th scope="row" colspan="2" style="text-align: center">Total</th>
-                                                                <td style="text-align: center"><b><?php echo htmlentities($totlcount); ?></b> de <b><?php echo htmlentities($outof = ($cnt - 1) * 100); ?></b></td>
+                                                                <td style="text-align: center"><b><?php echo htmlentities($totlcount); ?></b> de <b><?php echo htmlentities($outof = ($cnt - 1) * 10); ?></b></td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row" colspan="2" style="text-align: center">Porcentaje</th>
+                                                                <th scope="row" colspan="2" style="text-align: center">Promedio</th>
                                                                 <td style="text-align: center"><b><?php echo  htmlentities($totlcount * (100) / $outof); ?> %</b></td>
                                                             </tr>
                                                             <tr>
