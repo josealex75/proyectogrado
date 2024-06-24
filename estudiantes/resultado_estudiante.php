@@ -40,11 +40,7 @@ include('../conexion.php');
 
                     <section class="section" id="exampl">
                         <div class="container-fluid">
-
                             <div class="row">
-
-
-
                                 <div class="col-md-8 col-md-offset-2">
                                     <div class="panel">
                                         <div class="panel-heading">
@@ -58,6 +54,7 @@ include('../conexion.php');
                                                 $_SESSION['classid'] = $classid;
 
                                                  // Consulta para obtener resultados
+                                                
                                                 $query = "SELECT u.usuario AS usuario, p.n_periodo AS periodo, m.n_materia AS materia, n.nota AS nota 
                                                           FROM usuarios u 
                                                           JOIN roles r ON u.id_rol = r.id_rol 
@@ -73,13 +70,11 @@ include('../conexion.php');
                                                 $results = $stmt->fetchAll(PDO::FETCH_OBJ);
                                                 $cnt = 1;
                                                 if ($stmt->rowCount() > 0) {
-                                                    foreach ($resultss as $row) {   ?>
+                                                    foreach ($results as $row) {   ?>
                                                         <p><b>Nombre de Estudiante:</b> <?php echo htmlentities($row->usuario); ?></p>
-                                                        <p><b>ID Roll:</b> <?php echo htmlentities($row->RollId); ?>
-                                                        <p><b>Salon:</b> <?php echo htmlentities($row->grado); ?>(<?php echo htmlentities($row->Section); ?>)
+                                                        <p><b>Año Lectivo:</b> <?php echo htmlentities($row->periodo); ?>(<?php echo htmlentities($row->Section); ?>)
                                                         <?php }
-
-                                                        ?>
+                                                    ?>
                                             </div>
                                             <div class="panel-body p-20">
 
@@ -89,7 +84,7 @@ include('../conexion.php');
 
 
 
-                                                <table class="table table-hover table-bordered" border="1" width="100%">
+                                                <table class="table table-hover table-bordered" border:="1" width="100%">
                                                     <thead>
                                                         <tr style="text-align: center">
                                                             <th style="text-align: center">#</th>
@@ -102,8 +97,8 @@ include('../conexion.php');
 
 
                                                     <tbody>
-                                                        <?php
-                                                        // Code for result
+                                                         <?php
+                                                         //Code for result
 
                                                         $query = "SELECT u.usuario AS usuario, p.n_periodo AS periodo, m.n_materia AS materia, n.nota AS nota FROM usuarios u JOIN roles r ON u.id_rol = r.id_rol JOIN notas n ON u.id_usuario = n.id_usuario JOIN periodos p ON n.id_periodo = p.id_periodo JOIN materias m ON n.id_materia = m.id_materia JOIN grados g ON m.id_grado = g.id_grado WHERE u.id_usuario = :rollid and g.id_grado=:classid";
                                                         $query = $dbh->prepare($query);
@@ -114,12 +109,13 @@ include('../conexion.php');
                                                         $cnt = 1;
                                                         if ($countrow = $query->rowCount() > 0) {
                                                             foreach ($results as $result) {
-
+                                                            
                                                         ?>
 
                                                                 <tr>
                                                                     <th scope="row" style="text-align: center"><?php echo htmlentities($cnt); ?></th>
-                                                                    <td style="text-align: center"><?php echo htmlentities($result->ususario); ?></td>
+                                                                    <td style="text-align: center"><?php echo htmlentities($result->materia); ?></td>
+                                                                    <td style="text-align: center"><?php echo htmlentities($result->nota); ?></td>
                                                                     <td style="text-align: center"><?php echo htmlentities($totalmarks = $result->marks); ?></td>
                                                                 </tr>
                                                             <?php
@@ -136,7 +132,7 @@ include('../conexion.php');
                                                                 <td style="text-align: center"><b><?php echo  htmlentities($totlcount * (100) / $outof); ?> %</b></td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="3" align="center"><i class="fa fa-print fa-2x" aria-hidden="true" style="cursor:pointer" OnClick="CallPrint(this.value)"></i></td>
+                                                                <td colspan="3" align:="center"><i class="fa fa-print fa-2x" aria-hidden="true" style="cursor:pointer" OnClick="CallPrint(this.value)"></i></td>
                                                             </tr>
 
                                                         <?php } else { ?>

@@ -35,7 +35,7 @@ require '../conexion.php';
                                     $results = $query->fetchAll(PDO::FETCH_OBJ);
                                     if ($query->rowCount() > 0) {
                                         foreach ($results as $result) { ?>
-                                            <option value="<?php echo htmlentities($result->id_grado); ?>"> <?php echo htmlentities($result->n_grado); ?>&nbsp; Section-<?php echo htmlentities($result->Section); ?></option>
+                                            <option value="<?php echo htmlentities($result->materia); ?>"> <?php echo htmlentities($result->nota); ?>&nbsp; Section-<?php echo htmlentities($result->Section); ?></option>
 
                                     <?php 
                                         }
