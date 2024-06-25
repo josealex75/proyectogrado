@@ -163,7 +163,7 @@ include('../conexion.php');
                                     <div class="form-group">
 
                                         <div class="col-sm-6">
-                                            <a href="index.php" style="color:white;">Volver</a>
+                                            <a href="../index.html" style="color:white;">Volver</a>
                                         </div>
                                     </div>
 
