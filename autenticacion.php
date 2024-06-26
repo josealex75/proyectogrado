@@ -63,7 +63,7 @@ if ($stmt->num_rows > 0) {
             header('Location: index.php');
         }
         elseif($id_rol === 0){
-            header('Location: profesores/index.php');
+            header('Location: profesores/calificar.php');
         }
      //   elseif($id_rol === 1){
      //     header('Location: estudiantes/buscar_estudiante.php');
