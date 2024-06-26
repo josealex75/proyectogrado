@@ -87,7 +87,8 @@ if (!isset($_SESSION['loggedin'])) {
             echo "<td>" . $row->n_materia . "</td>";
             echo "<td>" . $row->n_grado . "</td>";
             echo "<td>";
-            echo "<button class='btn btn-success btn-sm' onclick=\"location.href='obtener_calificar.php?id=" . $row->id_grado . "'\"><i class='bi bi-x-circle-fill'></i> Editar</button>";
+            echo "<button class='btn btn-success btn-sm' onclick=\" location.href='obtener_calificar.php?id=" . $row->n_materia . "'\"><i class='bi bi-x-circle-fill'></i> Editar</button>";
+
             echo"</td>";
             echo "</tr>";
 
