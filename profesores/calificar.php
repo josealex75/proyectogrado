@@ -70,7 +70,7 @@ if (!isset($_SESSION['loggedin'])) {
 
     $_userid = $_SESSION['id_usuario']; // Getting user ID from session
 
-    $sql = "SELECT DISTINCT m.n_materia, g.n_grado, u.n_usuario FROM materias m INNER JOIN usuarios u  
+    $sql = "SELECT DISTINCT g.id_grado,m.n_materia, g.n_grado, u.n_usuario FROM materias m INNER JOIN usuarios u  
     INNER JOIN grados g ON m.id_usuario = u.id_usuario AND m.id_grado = g.id_grado WHERE
     u.id_rol = 0 AND u.id_usuario = :userid";
 
@@ -87,7 +87,7 @@ if (!isset($_SESSION['loggedin'])) {
             echo "<td>" . $row->n_materia . "</td>";
             echo "<td>" . $row->n_grado . "</td>";
             echo "<td>";
-            echo "<button class='btn btn-success btn-sm' onclick='editarProfesor(" . $row->n_grado . ")'><i class='bi bi-pencil-fill'></i> Editar</button>";
+            echo "<button class='btn btn-success btn-sm' onclick=\"location.href='obtener_calificar.php?id=" . $row->id_grado . "'\"><i class='bi bi-x-circle-fill'></i> Editar</button>";
             echo"</td>";
             echo "</tr>";
 
@@ -121,19 +121,17 @@ if (!isset($_SESSION['loggedin'])) {
 function editarProfesor(id) {
     // Realizar una solicitud AJAX para obtener los datos del profesor con el ID proporcionado
     $.ajax({
-        url: 'obtener_profesor.php', // Ruta al script PHP que obtiene los datos del profesor
+        url: 'obtener_calificar.php', // Ruta al script PHP que obtiene los datos del profesor
         type: 'GET',
         data: { id: id },
         success: function(response) {
             // Llenar los campos del formulario en el modal con los datos recibidos
             var data = JSON.parse(response);
+            $('#editarProfesorModal #materia').val(data.n_materia);
             $('#editarProfesorModal #id').val(data.id_usuario);
-            $('#editarProfesorModal #usuario').val(data.usuario);
             $('#editarProfesorModal #nombre').val(data.n_usuario);
-            $('#editarProfesorModal #apellidos').val(data.a_usuario);
-            $('#editarProfesorModal #email').val(data.correo_usuario);
-            $('#editarProfesorModal #direccion').val(data.direccion);
-            $('#editarProfesorModal #telefono').val(data.telefono);
+            $('#editarProfesorModal #apellidos').val(data.n_grado);
+  
             // Mostrar la ventana modal
             $('#editarProfesorModal').modal('show');
         },
