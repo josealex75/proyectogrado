@@ -105,13 +105,14 @@ require '../conexion.php';
     $id = $conn->real_escape_string($_GET['id']);
     
 }
-             $sql="SELECT DISTINCT 
+    $sql="SELECT DISTINCT 
     m.n_materia, 
     u.id_usuario, 
     u.usuario, 
     u.n_usuario, 
     n.nota, 
-    g.n_grado 
+    g.n_grado,
+    g.id_grado
 FROM 
     usuarios u 
 INNER JOIN 
@@ -137,8 +138,14 @@ WHERE
                 echo "<td>" . $row["n_usuario"] . "</td>";
                 echo "<td>" . $row["n_grado"] . "</td>";
                 echo "<td>" . $row["nota"] . "</td>";
+                echo '<pre>';
+                print_r($row);
+                echo '</pre>';
                 echo "<td>";
-                echo "<button class='btn btn-success btn-sm' onclick='editarNota (" . $row["id_usuario"] . ")'><i class='bi bi-pencil-fill'></i> Editar</button>";
+                echo "<button class='btn btn-success btn-sm' onclick='editarNota (" .$row["id_usuario"]. ")'><i class='bi bi-pencil-fill'></i> Editar</button>";
+                echo '<pre>';
+                print_r($row["id_usuario"]);
+                echo '</pre>';
                 echo "</td>";
                 echo "</tr>";
                }
@@ -152,3 +159,79 @@ WHERE
     </div>
   </section>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="editarNotaModal" tabindex="-1" aria-labelledby="editarNotaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarNotaModalLabel">Calificar Nota</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario para editar nota -->
+        <form action="editarnotas.php" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="materia" class="form-label disable">Materia</label>
+            <input type="text" class="form-control" id="materia" name="materia" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="id" class="form-label">Documnto</label>
+            <input type="text" class="form-control" id="id" name="id" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="grado" class="form-label">Grado</label>
+            <input type="text" class="form-control" id="grado" name="grado" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="nota" class="form-label">nota</label>
+            <input type="text" class="form-control" id="nota" name="nota" >
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+  &copy; 2024 Gestión de Notas
+</footer>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Bootstrap JS (dependencias Popper.js y Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+<script>
+function editarNota(id) {
+    // Realizar una solicitud AJAX para obtener los datos del alumno con el ID proporcionado
+    $.ajax({
+        url: 'calificarnotas.php', // Ruta al script PHP que obtiene los datos del alumno
+        type: 'GET',
+        data: { id: id },
+        success: function(response) {
+            // Llenar los campos del formulario en el modal con los datos recibidos
+            var data = JSON.parse(response);
+            $('#editarNotaModal #id').val(data.id_usuario);
+            $('#editarNotaModal #materia').val(data.materia);
+            $('#editarNotaModal #grado').val(data.id_grado);
+            $('#editarNotaModal #nota').val(data.nota);
+            // Mostrar la ventana modal
+            $('#editarNotaModal').modal('show');
+        },
+        error: function(xhr, status, error) {
+            // Manejar errores si la solicitud AJAX falla
+            console.error(error);
+        }
+    });
+}
+
+</script>
+
+
+</body>
+</html>
+
