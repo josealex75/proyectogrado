@@ -3,7 +3,7 @@
 if(isset($_GET['id'])) {
     // Conectar a la base de datos (suponiendo que ya tienes un archivo de conexión)
     require '../conexion.php';
-
+   
     // Escapar el ID para prevenir inyección SQL
     $id = $conn->real_escape_string($_GET['id']);
 

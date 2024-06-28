@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $direccion = isset($_POST["direccion"]) ? $_POST["direccion"] : '';
         $email = isset($_POST["email"]) ? $_POST["email"] : '';
         $telefono = isset($_POST["telefono"]) ? $_POST["telefono"] : '';
-        $id_rol = "1";
+        $id_rol = "0";
         $foto = '';
 
        

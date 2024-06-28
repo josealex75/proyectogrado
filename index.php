@@ -54,12 +54,12 @@ if (!isset($_SESSION['loggedin'])) {
           <a class="nav-link" href="periodos">periodos</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="cerrar-sesion.php">Cerrar Seccion</a>
+        <a class="nav-link" href="cerrar-sesion.php">Cerrar </a>
       </li>
-      <li class="nav-item">
-      <p aling="left">Hola de nuevo, <?= $_SESSION['name'] ?> !!!</p>
+       </ul>
+       <li class="nav-item">
+      <p aling="left">Hola de nuevo, <?= $_SESSION['n_usuario'] ?> !!!</p>
       </li>
-      </ul>
     </div>
   </div>
 </nav>

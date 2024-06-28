@@ -56,6 +56,12 @@ if (!isset($_SESSION['loggedin'])) {
         <li class="nav-item">
           <a class="nav-link" href="../notas">Notas</a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="cerrar-sesion.php">Cerrar Seccion</a>
+      </li>
+      <li class="nav-item">
+      <p aling="left" style="color:white >Hola de nuevo, <?= $_SESSION['n_usuario'] ?> !!!</p>
+      </li>
       </ul>
     </div>
   </div>
@@ -101,7 +107,7 @@ if (!isset($_SESSION['loggedin'])) {
           <?php
              require '../conexion.php';
 
-             $sql = "SELECT * FROM usuarios WHERE id_rol = 0 && estado = 1";
+             $sql = "SELECT * FROM usuarios WHERE id_rol = 2 && estado = 1";
              $result = $conn->query($sql);
             
             // // Verificar si se encontraron resultados

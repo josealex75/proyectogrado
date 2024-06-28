@@ -68,11 +68,9 @@ require '../conexion.php';
     <h2>Gestiónar Calificaciones</h2>
     <div class="row">
       <div class="col-12">
-        <!-- Botón para agregar nuevo profesor -->
-        <button class="btn btn-primary mb-3 float-end" data-bs-toggle="modal" data-bs-target="">
-          <i class="bi bi-plus"></i> Volver
-        </button>
-        
+           <a href="calificar.php" class="btn btn-primary mb-3 ms-3 float-end">
+          <i class="bi bi-trash"></i> volver
+        </a>
       </div>
     </div>
 
@@ -138,14 +136,7 @@ WHERE
                 echo "<td>" . $row["n_usuario"] . "</td>";
                 echo "<td>" . $row["n_grado"] . "</td>";
                 echo "<td>" . $row["nota"] . "</td>";
-                echo '<pre>';
-                print_r($row);
-                echo '</pre>';
-                echo "<td>";
                 echo "<button class='btn btn-success btn-sm' onclick='editarNota (" .$row["id_usuario"]. ")'><i class='bi bi-pencil-fill'></i> Editar</button>";
-                echo '<pre>';
-                print_r($row["id_usuario"]);
-                echo '</pre>';
                 echo "</td>";
                 echo "</tr>";
                }
@@ -169,7 +160,7 @@ WHERE
       </div>
       <div class="modal-body">
         <!-- Formulario para editar nota -->
-        <form action="editarnotas.php" method="POST" enctype="multipart/form-data">
+        <form action="calificarnotas.php" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="materia" class="form-label disable">Materia</label>
             <input type="text" class="form-control" id="materia" name="materia" readonly>
@@ -221,6 +212,9 @@ function editarNota(id) {
             $('#editarNotaModal #nota').val(data.nota);
             // Mostrar la ventana modal
             $('#editarNotaModal').modal('show');
+            echo '<pre>';
+                print_r($data);
+                echo '</pre>';
         },
         error: function(xhr, status, error) {
             // Manejar errores si la solicitud AJAX falla

@@ -4,33 +4,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Verificar si se recibió el ID del profesor a editar
     if (isset($_POST["id"])) {
-        // Conectar a la base de datos (suponiendo que ya tienes un archivo de conexión)
+        // Incluir archivo de conexión a la base de datos
         require '../conexion.php';
 
-        // Obtener el ID del profesor a editar
+        // Obtener los datos del formulario
         $id = $_POST["id"];
-        // Recuperar los datos del formulario
-        $materia = $_POST["n_materia"];
-        $documento = $_POST["id_usuario"];
-        $grado = $_POST["n_grado"];
-        $nota= $_POST["nota"];
+        $nota = $_POST["nota"];
 
+        // Preparar la consulta SQL utilizando prepared statements para prevenir inyección SQL
+        $sql = "UPDATE notas SET nota = ? WHERE id_nota = ?";
         
-       
-        // Actualizar los datos del profesor en la base de datos
-        $sql = "UPDATE notas SET id_nota='',nota = $nota,id_materia = $materia ,id_usuario = $documento,id_periodo= $periodo WHERE id_usuario = $documento;";
-        if ($conn->query($sql) === TRUE) {
-            // Redirigir al usuario al index con un mensaje de éxito
-            header("Location: index.php?mensaje=exito");
-            exit();
+        // Preparar la declaración SQL
+        $stmt = $conn->prepare($sql);
+
+        if ($stmt) {
+            // Vincular los parámetros y ejecutar la consulta
+            $stmt->bind_param("si", $nota, $id);
+
+            // Ejecutar la consulta
+            if ($stmt->execute()) {
+                // Redirigir al usuario al index con un mensaje de éxito
+                header("Location: index.php?mensaje=exito");
+                exit();
+            } else {
+                echo "Error al ejecutar la consulta: " . $stmt->error;
+            }
+
+            // Cerrar la declaración preparada
+            $stmt->close();
         } else {
-            echo "Error al actualizar los datos del Profesor: " . $conn->error;
+            echo "Error al preparar la consulta: " . $conn->error;
         }
 
         // Cerrar la conexión a la base de datos
         $conn->close();
     } else {
-        echo "Error: No se recibió el ID del profesor a editar";
+        echo "Error: No se recibió el ID de la nota a editar";
     }
 } else {
     echo "Acceso denegado";

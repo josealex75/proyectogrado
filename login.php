@@ -20,7 +20,7 @@
     <div class="login-container">
         <h2>Login</h2>
         <form action="autenticacion.php" method="post">
-            <input type="text" id="username" name="username" placeholder="Correo electrónico" required>
+            <input type="email" id="username" name="username" placeholder="Correo electrónico" required>
             <input type="password" id="password" name="password" placeholder="Contraseña" required>
             <button type="submit">Iniciar sesión</button>
         </form>

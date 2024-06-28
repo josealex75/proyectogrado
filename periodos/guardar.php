@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["nombre"]) && !empty($_POST["nombre"])) {
         // Conectar a la base de datos (suponiendo que ya tienes un archivo de conexión)
         require '../conexion.php';
-
+       
         // Recuperar el campo obligatorio "nombre"
         $nombre = $_POST["nombre"];
 

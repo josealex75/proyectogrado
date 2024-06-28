@@ -160,8 +160,8 @@
             <input type="text" class="form-control" id="nombre" name="nombre" required>
           </div>
           <div class="mb-3">
-            <label for="año" class="form-label">año</label>
-            <input type="text" class="form-control" id="año" name="año" required>
+            <label for="ano" class="form-label">año</label>
+            <input type="text" class="form-control" id="ano" name="ano" required>
           </div>
 
           <button type="submit" class="btn btn-primary">Guardar</button>
@@ -186,8 +186,8 @@
             <input type="text" class="form-control" id="nombre" name="nombre" required>
           </div>
           <div class="mb-3">
-            <label for="año" class="form-label">Año</label>
-            <input type="text" class="form-control" id="año" name="año" required>
+            <label for="ano" class="form-label">Año</label>
+            <input type="text" class="form-control" id="ano" name="ano" required>
           </div> <div class="mb-3">
           <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
@@ -221,7 +221,7 @@ function editarPeriodo(id) {
             var data = JSON.parse(response);
             $('#editarMateriaModal #id').val(data.id_materia);
             $('#editarMateriaModal #nombre').val(data.n_periodo);
-            $('#editarMateriaModal #año').val(data.año);
+            $('#editarMateriaModal #ano').val(data.ano);
             // Mostrar la ventana modal
             $('#editarMateriaModal').modal('show');
         },

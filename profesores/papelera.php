@@ -36,13 +36,13 @@ if (!isset($_SESSION['loggedin'])) {
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../profesores">Profesores</a>
+          <a class="nav-link active" href="index.php">Profesores</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../materias">Materias</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="index.php">Estudiantes</a>
+          <a class="nav-link" href="../estudiantes">Estudiantes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../grados">Grados</a>
@@ -57,13 +57,13 @@ if (!isset($_SESSION['loggedin'])) {
 
 <!-- Main Content -->
 <div class="container mt-4">
-  <!-- Sección de Gestión de Estudiantes -->
-  <section id="estudiantes">
-    <h2>Gestión de Estudiantes (Papelera)</h2>
+  <!-- Sección de Gestión de Profesores -->
+  <section id="profesores">
+    <h2>Gestión de Profesores (Papelera)</h2>
     <div class="row">
       <div class="col-12">
         <a href="index.php" class="btn btn-primary mb-3 ms-3 float-end">
-          <i class="bi bi-trash"></i> Estudiantes
+          <i class="bi bi-trash"></i> Profesores
         </a>
         
       </div>
@@ -74,7 +74,7 @@ if (!isset($_SESSION['loggedin'])) {
     <?php
         require '../conexion.php';
 
-        $sql = "SELECT * FROM usuarios WHERE id_rol = 1 && estado = 0";
+        $sql = "SELECT * FROM usuarios WHERE id_rol = 2 && estado = 0";
         $result = $conn->query($sql);
     
     // // Verificar si se encontraron resultados
@@ -265,7 +265,7 @@ function habilitarProfesor(id) {
         type: 'GET',
         data: { id: id },
         success: function(response) {
-          alert('Estudiante habilitado!');
+          alert('Profesor habilitado!');
           location.reload();
         },
         error: function(xhr, status, error) {
